@@ -39,6 +39,6 @@
   lineinfile:
     dest: "{{ item }}"
     regexp: "^lxc.mount.auto"
-    line: 'lxc.mount.auto: "proc:rw sys:rw"'
+    line: 'lxc.mount.auto: "proc:rw sys:rw cgroup:rw"'
   loop: "{{ proxmox_lxc_filtered_files }}"
   notify: reboot containers
