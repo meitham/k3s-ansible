@@ -47,6 +47,14 @@
     - raspberry_pi|default(false)
     - ansible_facts.lsb.description|default("") is match("Debian.*bullseye")
 
+- name: Set detected_distribution to Ubuntu
+  set_fact:
+    detected_distribution: Ubuntu
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_architecture == "arm64"
+    - raspberry_pi|default(false)
+
 - name: Execute OS related tasks on the Raspberry Pi - {{ action_ }}
   include_tasks: "{{ item }}"
   with_first_found:
